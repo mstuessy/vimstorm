@@ -2,6 +2,7 @@
 Vim config with PHPStorm-like functionality.
 
 ## Features
+- Debugging (vdebug)
 - Completion (deoplete + phpactor + deoplete-phpactor)
 - Refactoring commands (phpactor)
   - Extract method
