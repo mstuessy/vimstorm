@@ -46,6 +46,9 @@ Plugin 'phpactor/phpactor'
 Plugin 'shougo/deoplete.nvim'
 Plugin 'kristijanhusak/deoplete-phpactor'
 
+" debugging
+Plugin 'vim-vdebug/vdebug'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -171,3 +174,8 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources.php = ['omni', 'phpactor']
 " let g:deoplete#sources.php = ['omni', 'phpactor', 'ultisnips']
+
+" debugging
+let g:vdebug_options = {'break_on_open': 0}
+let g:vdebug_options = {'server': 'localhost'}
+let g:vdebug_options = {'port': '9090'}
