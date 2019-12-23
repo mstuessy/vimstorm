@@ -12,6 +12,7 @@ Plugin 'jwalton512/vim-blade'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'leafgarland/typescript-vim'
 
 " theme
 Plugin 'joshdick/onedark.vim'
@@ -34,6 +35,7 @@ Plugin 'junegunn/fzf.vim'
 
 " linting
 Plugin 'dense-analysis/ale'
+" Plugin 'quramy/tsuquyomi'
 
 " nvim plugin support
 Plugin 'roxma/nvim-yarp'
@@ -74,7 +76,10 @@ let g:ale_sign_warning = '!'
 let g:ale_php_phpcs_options='--standard=PSR12'
 let g:ale_php_phpstan_options = '--standard=PSR12'
 
-let g:ale_linters = {'php': ['php', 'phpcs', 'langserver', 'phpstan', 'phpmd'], 'javascript': ['prettier', 'eslint']}
+let g:ale_linters = {
+    \'php': ['php', 'phpcs', 'langserver', 'phpstan', 'phpmd'],
+    \'typescript': ['eslint', 'standard', 'tsserver', 'typecheck', 'xo']
+\}
 let g:ale_linters_explicit = 1
 
 " ale (linting)
@@ -91,7 +96,7 @@ let g:ale_php_phpmd_executable = expand('~/.composer/vendor/bin/phpmd')
 nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 
 " bind nerdtree toggle
-nmap <F6> :NERDTreeToggle<CR>
+nmap <F1> :NERDTreeToggle<CR>
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -105,7 +110,8 @@ map ym :call phpactor#ExtractMethod()
 " nnoremap <y><u> :call phpactor#UseAdd()<CR>
 
 " phpactor jump to reference
-nnoremap <C-]> :call phpactor#GotoDefinition()<CR>
+autocmd FileType php nnoremap <C-]> :call phpactor#GotoDefinition()<CR>
+autocmd FileType typescript nnoremap <C-]> :ALEGoToDefinition<CR>
 nnoremap <S-LeftMouse> :call phpactor#GotoDefinition()<CR>
 
 set foldlevel=20
@@ -179,3 +185,9 @@ let g:deoplete#sources.php = ['omni', 'phpactor']
 let g:vdebug_options = {'break_on_open': 0}
 let g:vdebug_options = {'server': 'localhost'}
 let g:vdebug_options = {'port': '9090'}
+let g:vdebug_options.path_maps = {
+    \"/srv/www/": "/Users/martinstuessy/admin-tool"
+\}
+
+" point to typescript executable
+" let $PATH=$PATH . ':/usr/local/Cellar/node/13.3.0/lib/node_modules/typescript/bin'
