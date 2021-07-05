@@ -40,7 +40,6 @@ Plugin 'junegunn/fzf.vim'
 
 " linting
 Plugin 'dense-analysis/ale'
-" Plugin 'quramy/tsuquyomi'
 
 " nvim plugin support
 Plugin 'roxma/nvim-yarp'
@@ -50,7 +49,6 @@ Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'neoclide/coc.nvim'
 
 " debugging
-" Plugin 'vim-vdebug/vdebug'
 Plugin 'puremourning/vimspector'
 
 " openapi
@@ -63,9 +61,6 @@ Plugin 'vim-airline/vim-airline'
 
 " multi selection/cursor
 Plugin 'mg979/vim-visual-multi'
-
-" multi database
-" Plugin 'tpope/vim-dadbod'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -111,8 +106,6 @@ let g:ale_linters = {
     \'javascript': ['eslint', 'tsserver']
 \}
 
-" \'typescript': ['tslint', 'standard', 'tsserver', 'typecheck', 'xo'],
-
 let g:ale_linters_explicit = 1
 
 " ale (linting)
@@ -121,14 +114,7 @@ let g:ale_php_phpstan_executable = expand('~/.composer/vendor/bin/phpstan')
 let g:ale_php_phpcs_executable = expand('~/.composer/vendor/bin/phpcs')
 let g:ale_php_phpmd_executable = expand('~/.composer/vendor/bin/phpmd')
 let g:ale_javascript_eslint_executable = expand('./node_modules/.bin/eslint')
-
-" let g:ale_typescript_tsserver_config_path = expand('./.eslintrc.json')
-" let g:ale_typescript_tsserver_config_path = expand('./.eslintrc.json')
 let g:ale_javascript_eslint_use_global = 0
-
-" ###############
-" custom bindings
-" ###############
 
 " git blame stuff
 nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
@@ -138,20 +124,6 @@ nmap <F1> :NERDTreeToggle<CR>
 
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
-
-" phpactor UseAdd
-" map ,ua :call phpactor#UseAdd()
-
-" phpactor ExtractMethod
-" map ,em :call phpactor#ExtractMethod()
-
-" nnoremap <y><u> :call phpactor#UseAdd()<CR>
-
-" phpactor jump to reference
-" autocmd FileType php nnoremap <C-]> :call phpactor#GotoDefinition()<CR>
-" autocmd FileType typescript nnoremap <C-]> :ALEGoToDefinition<CR>
-" autocmd FileType javascript nnoremap <C-]> :ALEGoToDefinition<CR>
-" nnoremap <S-LeftMouse> :call phpactor#GotoDefinition()<CR>
 
 set foldlevel=20
 set nospell             " disable vim spelling
@@ -196,11 +168,6 @@ set nowrap
 " connect with system clipboard
 set clipboard+=unnamed
 
-" let g:phpactorPhpBin = 'php'
-" let g:phpactorBranch = 'develop'
-" let g:phpactorOmniAutoClassImport = v:true
-" let g:phpactorInputListStrategy = 'phpactor#input#list#fzf'
-
 " Example of implementation with vim's inputlist() function
 function! InputListCustomStrategy(label, choices, ResultHandler)
     echo a:label
@@ -212,23 +179,6 @@ function! InputListCustomStrategy(label, choices, ResultHandler)
 
     call a:ResultHandler(a:choices[choice - 1])
 endfunction
-
-" let g:phpactorCustomInputListStrategy = 'InputListCustomStrategy'
-
-" deoplete
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#sources = {}
-" let g:deoplete#sources.php = ['omni', 'phpactor']
-" let g:deoplete#sources.php = ['omni', 'phpactor', 'ultisnips']
-
-" debugging
-" let g:vdebug_options = {'break_on_open': 1}
-" let g:vdebug_options = {'server': 'localhost'}
-" let g:vdebug_options = {'port': '9090'}
-
-" let g:vdebug_options.path_maps = {
-"     \"/srv/www/": "<path-here>"
-" \}
 
 " point to typescript executable
 let $PATH=$PATH . ':/usr/local/Cellar/node/13.3.0/bin'
@@ -253,9 +203,6 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 " vimspector
-" let g:vimspector_enable_mappings = 'HUMAN'
-
-" let g:vimspector_enable_mappings = 'HUMAN'nmap <leader>vl :call vimspector#Launch()<CR>
 nmap <leader>vr :VimspectorReset<CR>
 nmap <leader>ve :VimspectorEval
 nmap <leader>vw :VimspectorWatch
@@ -263,11 +210,7 @@ nmap <leader>vo :VimspectorShowOutput
 nmap <leader>vi <Plug>VimspectorBalloonEval
 xmap <leader>vi <Plug>VimspectorBalloonEval
 
-" for normal mode - the word under the cursor
-" nmap <Leader>di <Plug>VimspectorBalloonEval
-" " for visual mode, the visually selected text
-" xmap <Leader>di <Plug>VimspectorBalloonEval
-
+" git
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
 nmap <leader>gs :G<CR>
